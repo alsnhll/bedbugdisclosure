@@ -7,10 +7,12 @@ library(ggplot2)
 
 # Source the functions we will need for our analyses.
 source("code/functions.R")
+source("code/functions_DDM.R")
 
 # Set baseline prevalence (p) and renter selectivity (s).
 p <- 0.05
 s <- 0.5
+Dnum <- 100 
 
 # Set parameter values and bed bug-related costs.  
 preparam <- SetParameters()
@@ -24,14 +26,14 @@ param <- c(preparam, beta, base.prev = p)
 # Get initial conditions (Sr0, Ir0, etc.) and append these and d to our vector 
 # of parameter values.
 init <- GetInit(param)
-param.init <- c(param, init, d = s)
+param.init <- c(param, init, d = s, Dnum = Dnum)
 
 # Set the years over which to run the simulation and get the cost of disclosure.
 years <- 1:20
 
 # Run the GetCost function which outputs a data frame of total and component
 # costs, along with prevalence over the years of the disclosure simulation.
-cost.df <- GetCost(param.init, bbcosts, years)
+cost.df <- GetCostDDM(param.init, bbcosts, years)
 
 # Add Year 0
 year0 <- data.frame(Year = 0, Total_Cost = 0, Treatment = 0, Turnover = 0, 
@@ -86,7 +88,7 @@ fig <- ggplot() +
         axis.title.y.right = element_text(color = "firebrick3"),
         axis.text.y.right = element_text(color = "firebrick3")) +
   geom_line(data=prev.df,aes(x=Year, y=(Prevalence-b_transform)/m_transform, 
-            color = "firebrick1"), color="firebrick1", linetype=1, size=1.3)  
+            color = "firebrick1"), color="firebrick1", linetype=1, size=1.3) 
 plot(fig)
-#ggsave("figures/Routput/fig_barplot.pdf", height=6, width=10)
+#ggsave("figures/DDMfigures/fig_barplotDDM.pdf", height=6, width=10)
 

@@ -1,7 +1,8 @@
 library(deSolve)
 
 # IMPORTANT: UPDATE THE WORKING DIRECTORY BELOW
-setwd("~/Dropbox/Research/SESYNC/Code")
+#setwd("~/Dropbox/Research/SESYNC/Code")
+#setwd("UPDATE_PATH/bedbugdisclosure")
 
 source("code/functions.R")
 
