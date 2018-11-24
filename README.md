@@ -29,7 +29,7 @@ All scripts can be found in the **code** folder. For scripts to run correctly, i
 
 ### User-defined functions
 *Contains the user-defined functions sourced by the other scripts.*
-- **functioins.R** 
+- **functions.R** 
 - **functions_extra.R** 
 
 ### Plot time-course of bed bug spread
@@ -37,6 +37,14 @@ All scripts can be found in the **code** folder. For scripts to run correctly, i
 - **plotodes.R** - plots the number of units in each class (Sr, Ir, etc.) for a single simulation, with user controls to change parameter values. Note: time unit for parameter values is in days.
 - **plotodes_** - same as plotodes.R except time unit for parameters is in years.
 - **plotodes_imm.R** - same as plotodes.R with the addition of intermarget migration parameters (i.e. *i* and *e*). Note: time unit for parameter values is in days.
+
+### Model with alternate distribution of time spent in disclosed state ("DDM")
+*This alternate model was created in response to a comment by Reviewer 2, which mentioned that in our ODE formulation, the length of the disclosure period is exponentially-distributed, whereas in reality it is closer to a fixed length. To create an ODE model that with more tightly distributed disclosure periods (near the average of 1/D), we created a multi-compartment model of the disclosure period (with Dn disclosure states the coefficient of variation of disclosure period -> 1/sqrt(Dn). The model can be run for any Dn. *
+- **plotodesDDM.R** - plots the number of units in each class (Sr, Ir, etc.) for a single simulation, with user controls to change parameter values. Note: time unit for parameter values is in days.
+- **figure_disclosuredelay.R** - plots the difference between the disclosure delay model (DDM) and the basic model in terms of % infested over time, % vacant over time, and cumulative costs. 
+- **figure_barplotDDM.R** - plots equivalent of Figure 2 for this alternate DDM model
+- **figure_barplotDDM_v_Basic.R** - plots equivalent of Figure 2 but for *difference* in cost components after disclosure in the disclosure delay model (DDM) vs the basic model
+
 
 ## Other files
 
